@@ -3,9 +3,10 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
 import { useUser } from '@/contexts/UserContext';
 import { useHive } from '@/contexts/HiveContext';
-import { MapPin, Settings, UserRound } from 'lucide-react';
+import { ChartColumn, Heart, MapPin, Settings, UserRound } from 'lucide-react';
 
 function getInitials(name?: string) {
   if (!name) return 'U';
@@ -27,40 +28,82 @@ export default function ProfilePage() {
             <UserRound className="h-5 w-5 text-orange-600" />
             My Profile
           </CardTitle>
-          <CardDescription>Your personal details and hive membership</CardDescription>
+          <CardDescription>Your account snapshot, LunchHive activity, and current delivery setup</CardDescription>
         </CardHeader>
-        <CardContent>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <CardContent className="space-y-6">
+          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
             <Avatar className="h-16 w-16">
               <AvatarFallback>{getInitials(user?.name)}</AvatarFallback>
             </Avatar>
             <div className="space-y-1">
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <h2 className="text-xl font-semibold">{user?.name ?? 'Guest User'}</h2>
                 <Badge variant="secondary">{user ? 'Member' : 'Guest'}</Badge>
+                {selectedHive?.type === 'work' && <Badge className="bg-orange-500 text-white hover:bg-orange-500">Work hive</Badge>}
+                {selectedHive?.type === 'home' && <Badge className="bg-green-600 text-white hover:bg-green-600">Home hive</Badge>}
               </div>
-              {user?.email && (
-                <p className="text-sm text-muted-foreground">{user.email}</p>
-              )}
+              {user?.email && <p className="text-sm text-muted-foreground">{user.email}</p>}
             </div>
           </div>
 
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            <Card className="border-muted">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base"><ChartColumn className="h-4 w-4 text-orange-600" /> Lunch stats</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2 text-sm text-muted-foreground">
+                <p><strong className="text-foreground">Total lunches:</strong> {user?.stats.totalLunches ?? 0}</p>
+                <p><strong className="text-foreground">Healthy picks:</strong> {user?.stats.healthyPercent ?? 0}%</p>
+                <p><strong className="text-foreground">Preferred location:</strong> {user?.stats.preferredLocation ?? '—'}</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-muted">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base"><Heart className="h-4 w-4 text-orange-600" /> Taste profile</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2 text-sm text-muted-foreground">
+                <p><strong className="text-foreground">Favourite meal:</strong> {user?.stats.favouriteMeal ?? '—'}</p>
+                <p><strong className="text-foreground">Saved favourites:</strong> {user?.favourites.length ?? 0}</p>
+                <p><strong className="text-foreground">Saved hives:</strong> {user?.savedHives.length ?? 0}</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-muted">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base"><MapPin className="h-4 w-4 text-orange-600" /> Current hive</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2 text-sm text-muted-foreground">
+                {selectedHive ? (
+                  <>
+                    <p className="font-medium text-foreground">{selectedHive.name}</p>
+                    <p>{selectedHive.address}</p>
+                    <p>Delivery window: {selectedHive.deliveryWindow}</p>
+                  </>
+                ) : (
+                  <p>No hive selected yet.</p>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+
+          <Separator />
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <Card className="border-muted">
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
                   <MapPin className="h-4 w-4 text-orange-600" />
-                  Current Hive
+                  Delivery setup
                 </CardTitle>
-                <CardDescription>Your selected delivery location</CardDescription>
+                <CardDescription>Your current delivery location and hive routing</CardDescription>
               </CardHeader>
               <CardContent>
                 {selectedHive ? (
-                  <div className="space-y-1">
-                    <p className="font-medium">{selectedHive.name}</p>
-                    {selectedHive.address && (
-                      <p className="text-sm text-muted-foreground">{selectedHive.address}</p>
-                    )}
+                  <div className="space-y-1 text-sm text-muted-foreground">
+                    <p className="font-medium text-foreground">{selectedHive.name}</p>
+                    <p>{selectedHive.address}</p>
+                    <p>Window: {selectedHive.deliveryWindow}</p>
                   </div>
                 ) : (
                   <p className="text-sm text-muted-foreground">No hive selected. Choose your hive to get batch lunches at your location.</p>
@@ -77,15 +120,18 @@ export default function ProfilePage() {
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
                   <Settings className="h-4 w-4 text-orange-600" />
-                  Settings
+                  Account settings
                 </CardTitle>
-                <CardDescription>Manage preferences and notifications</CardDescription>
+                <CardDescription>Manage profile, notifications, preferences, and demo state</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">Update your preferences including dietary restrictions and notification settings.</p>
-                <div className="mt-4">
+                <p className="text-sm text-muted-foreground">Use Settings to prepare the account side of the app for future backend-backed user management.</p>
+                <div className="mt-4 flex flex-wrap gap-2">
                   <Button asChild>
-                    <Link to="/settings">Go to Settings</Link>
+                    <Link to="/settings">Open Settings</Link>
+                  </Button>
+                  <Button asChild variant="outline">
+                    <Link to="/notifications">View notifications</Link>
                   </Button>
                 </div>
               </CardContent>
