@@ -5,7 +5,7 @@ import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
-    allowedHosts: [".meetcrow.com"], // Allow all *.meetcrow.com subdomains for preview
+    allowedHosts: true, // Allow all hosts for preview/dev access
     host: true,
     port: 3000,
   },
