@@ -39,10 +39,10 @@ export function Navbar() {
         </Link>
         <nav className="hidden md:flex items-center gap-4">
           <NavLink to="/menu" className={({ isActive }) => `text-sm font-medium ${isActive ? 'text-orange-600' : 'text-foreground hover:text-orange-600'}`}>Today’s Menu</NavLink>
+          <NavLink to="/pricing" className={({ isActive }) => `text-sm font-medium ${isActive ? 'text-orange-600' : 'text-foreground hover:text-orange-600'}`}>Pricing</NavLink>
+          <NavLink to="/faq" className={({ isActive }) => `text-sm font-medium ${isActive ? 'text-orange-600' : 'text-foreground hover:text-orange-600'}`}>FAQ</NavLink>
           <NavLink to="/my-hive" className={({ isActive }) => `text-sm font-medium ${isActive ? 'text-orange-600' : 'text-foreground hover:text-orange-600'}`}>My Hive</NavLink>
           <NavLink to="/orders" className={({ isActive }) => `text-sm font-medium ${isActive ? 'text-orange-600' : 'text-foreground hover:text-orange-600'}`}>Orders</NavLink>
-          <NavLink to="/subscriptions" className={({ isActive }) => `text-sm font-medium ${isActive ? 'text-orange-600' : 'text-foreground hover:text-orange-600'}`}>Subscriptions</NavLink>
-          <NavLink to="/reviews" className={({ isActive }) => `text-sm font-medium ${isActive ? 'text-orange-600' : 'text-foreground hover:text-orange-600'}`}>Reviews</NavLink>
         </nav>
         <div className="flex items-center gap-3">
           <Button variant="ghost" className="flex items-center gap-2 sm:hidden" onClick={() => navigate('/menu')} aria-label="Today’s Menu">
@@ -76,6 +76,8 @@ export function Navbar() {
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={() => navigate('/profile')}>Profile</DropdownMenuItem>
               <DropdownMenuItem onClick={() => navigate('/settings')}>Settings</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate('/about')}>About LunchHive</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate('/contact')}>Contact support</DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={() => { signOut(); navigate('/'); }}>Sign out (demo)</DropdownMenuItem>
             </DropdownMenuContent>

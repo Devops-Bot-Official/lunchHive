@@ -11,6 +11,11 @@ import ProfilePage from '@/pages/Profile';
 import SettingsPage from '@/pages/Settings';
 import CompanyAdminPage from '@/pages/CompanyAdmin';
 import ReviewsPage from '@/pages/Reviews';
+import AboutPage from '@/pages/About';
+import PricingPage from '@/pages/Pricing';
+import FAQPage from '@/pages/FAQ';
+import ContactPage from '@/pages/Contact';
+import NotFound from '@/pages/NotFound';
 import { Layout } from '@/components/Layout';
 import { UserProvider } from '@/contexts/UserContext';
 import { HiveProvider } from '@/contexts/HiveContext';
@@ -34,6 +39,10 @@ function App() {
                 <Layout>
                   <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/pricing" element={<PricingPage />} />
+                    <Route path="/faq" element={<FAQPage />} />
+                    <Route path="/contact" element={<ContactPage />} />
                     <Route path="/hives" element={<Hives />} />
                     <Route path="/menu" element={<MenuPage />} />
                     <Route path="/checkout" element={<CheckoutPage />} />
@@ -44,12 +53,12 @@ function App() {
                     <Route path="/settings" element={<SettingsPage />} />
                     <Route path="/company-admin" element={<CompanyAdminPage />} />
                     <Route path="/reviews" element={<ReviewsPage />} />
-
                     <Route path="/deliver" element={<DeliverLanding />} />
                     <Route path="/deliver/apply" element={<RiderApply />} />
                     <Route path="/deliver/status" element={<RiderStatus />} />
                     <Route path="/driver" element={<DriverDashboard />} />
                     <Route path="/driver/settings" element={<DriverSettings />} />
+                    <Route path="*" element={<NotFound />} />
                   </Routes>
                 </Layout>
                 <Toaster position="top-right" richColors />
