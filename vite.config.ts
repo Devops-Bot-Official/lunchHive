@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => ({
   server: {
     allowedHosts: [".meetcrow.com"], // Allow all *.meetcrow.com subdomains for preview
     host: true,
-    port: 8080,
+    port: 3000,
   },
   plugins: [react()],
   resolve: {
