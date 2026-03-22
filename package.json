@@ -1,9 +1,9 @@
 {
-  "name": "frontend-template",
+  "name": "lunchhive",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "A modern React template with Vite, TypeScript, Tailwind CSS, and shadcn/ui components",
+  "description": "LunchHive frontend for batched office and neighbourhood lunch ordering",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
