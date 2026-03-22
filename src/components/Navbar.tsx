@@ -1,5 +1,5 @@
 import { NavLink, Link, useNavigate } from 'react-router-dom';
-import { Hexagon, ShoppingCart, UserRound, Building2, MapPin, UtensilsCrossed, Bike } from 'lucide-react';
+import { Hexagon, ShoppingCart, UserRound, Building2, MapPin, UtensilsCrossed, Bike, Bell } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Badge } from '@/components/ui/badge';
@@ -39,10 +39,10 @@ export function Navbar() {
         </Link>
         <nav className="hidden md:flex items-center gap-4">
           <NavLink to="/menu" className={({ isActive }) => `text-sm font-medium ${isActive ? 'text-orange-600' : 'text-foreground hover:text-orange-600'}`}>Today’s Menu</NavLink>
+          <NavLink to="/pricing" className={({ isActive }) => `text-sm font-medium ${isActive ? 'text-orange-600' : 'text-foreground hover:text-orange-600'}`}>Pricing</NavLink>
+          <NavLink to="/faq" className={({ isActive }) => `text-sm font-medium ${isActive ? 'text-orange-600' : 'text-foreground hover:text-orange-600'}`}>FAQ</NavLink>
           <NavLink to="/my-hive" className={({ isActive }) => `text-sm font-medium ${isActive ? 'text-orange-600' : 'text-foreground hover:text-orange-600'}`}>My Hive</NavLink>
           <NavLink to="/orders" className={({ isActive }) => `text-sm font-medium ${isActive ? 'text-orange-600' : 'text-foreground hover:text-orange-600'}`}>Orders</NavLink>
-          <NavLink to="/subscriptions" className={({ isActive }) => `text-sm font-medium ${isActive ? 'text-orange-600' : 'text-foreground hover:text-orange-600'}`}>Subscriptions</NavLink>
-          <NavLink to="/reviews" className={({ isActive }) => `text-sm font-medium ${isActive ? 'text-orange-600' : 'text-foreground hover:text-orange-600'}`}>Reviews</NavLink>
         </nav>
         <div className="flex items-center gap-3">
           <Button variant="ghost" className="flex items-center gap-2 sm:hidden" onClick={() => navigate('/menu')} aria-label="Today’s Menu">
@@ -58,6 +58,9 @@ export function Navbar() {
             <span className="text-sm">Deliver with LunchHive</span>
           </Button>
           <ThemeToggle />
+          <Button variant="ghost" onClick={() => navigate('/notifications')} aria-label="Notifications">
+            <Bell className="h-5 w-5" />
+          </Button>
           <Button variant="ghost" className="relative" onClick={() => navigate('/checkout')} aria-label="Cart">
             <ShoppingCart className="h-5 w-5" />
             {count > 0 && <Badge className="absolute -right-2 -top-2 bg-green-500 text-white hover:bg-green-500" aria-label={`${count} items in cart`}>{count}</Badge>}
@@ -76,6 +79,8 @@ export function Navbar() {
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={() => navigate('/profile')}>Profile</DropdownMenuItem>
               <DropdownMenuItem onClick={() => navigate('/settings')}>Settings</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate('/about')}>About LunchHive</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate('/contact')}>Contact support</DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={() => { signOut(); navigate('/'); }}>Sign out (demo)</DropdownMenuItem>
             </DropdownMenuContent>

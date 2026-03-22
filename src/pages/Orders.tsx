@@ -45,7 +45,10 @@ export default function OrdersPage() {
   return (
     <section className="space-y-6">
       <div className="flex items-center justify-between gap-3">
-        <h1 className="text-3xl font-bold">Orders</h1>
+        <div>
+          <h1 className="text-3xl font-bold">Orders</h1>
+          <p className="text-muted-foreground">Track current and recent LunchHive orders.</p>
+        </div>
         <div className="flex items-center gap-2">
           <Button variant="outline" onClick={loadOrders}>Refresh</Button>
           <Button asChild>
@@ -54,11 +57,11 @@ export default function OrdersPage() {
         </div>
       </div>
 
-      <Card className="p-0 overflow-hidden">
+      <Card className="overflow-hidden p-0">
         {loading ? (
           <div className="p-6 text-muted-foreground">Loading orders…</div>
         ) : error ? (
-          <div className="p-6 space-y-3">
+          <div className="space-y-3 p-6">
             <p className="text-destructive">{error}</p>
             <Button variant="outline" onClick={loadOrders}>Try again</Button>
           </div>
@@ -76,6 +79,7 @@ export default function OrdersPage() {
                 <TableHead className="text-right">Total</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead>Delivery window</TableHead>
+                <TableHead className="text-right">View</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -89,6 +93,11 @@ export default function OrdersPage() {
                     <Badge className={statusBadgeClass(order.status)}>{order.status}</Badge>
                   </TableCell>
                   <TableCell>{order.deliveryWindow}</TableCell>
+                  <TableCell className="text-right">
+                    <Button asChild size="sm" variant="outline">
+                      <Link to={`/orders/${order.id}`}>Details</Link>
+                    </Button>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
