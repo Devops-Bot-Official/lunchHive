@@ -1,128 +1,125 @@
-# Frontend Development Template
+# LunchHive
 
-A modern, production-ready frontend template for React applications.
+LunchHive is a React/TypeScript web application for batched lunch ordering.
 
-## Tech Stack
+It models a delivery flow where people join a shared **hive** (office floor, coworking space, apartment block, or neighbourhood delivery zone), order from a curated daily menu, and receive grouped deliveries inside a scheduled time window.
 
-This template is built with:
+This repository is the active LunchHive codebase.
 
-- **Vite** - Lightning-fast build tool
-- **React 18** - Modern React with hooks
-- **TypeScript** - Type-safe development
-- **Tailwind CSS** - Utility-first CSS framework
-- **shadcn/ui** - Beautiful, accessible UI components
-- **React Router** - Client-side routing
-- **React Query** - Data fetching and caching
-- **React Hook Form** - Form handling
-- **Zod** - Schema validation
+## What the app does
 
-## Features
+- lets users choose a work or home hive
+- loads a daily menu for the selected hive
+- adds meals to a shared cart
+- places demo orders through a mock API layer
+- tracks orders, subscriptions, profile state, and delivery-side screens
+- persists demo state in `localStorage`
 
-✅ Pre-configured with all essential dependencies
-✅ Complete set of shadcn/ui components
-✅ Dark mode support with next-themes
-✅ Routing with React Router
-✅ Form handling with React Hook Form + Zod
-✅ Toast notifications (Sonner)
-✅ ESLint configuration
-✅ TypeScript setup
-✅ Responsive design utilities
+## Product status
 
-## Getting Started
+LunchHive currently runs as a **frontend-only demo/prototype**.
+
+There is no real backend service yet. The app uses a mock API in:
+
+- `src/lib/api.ts`
+
+That layer simulates:
+- user profile data
+- hives and hive stats
+- menu items
+- order creation and order status progression
+- subscriptions
+- local persistence
+- network latency and occasional mock failures
+
+## Stack
+
+- Vite
+- React 18
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- React Router
+- Framer Motion
+- Sonner
+- next-themes
+
+## Run locally
 
 ### Prerequisites
 
-- Node.js (v18 or higher)
-- npm, yarn, pnpm, or bun
+- Node.js 18+
+- npm
 
-### Installation
+### Install
 
-```sh
-# Clone the repository
-git clone <YOUR_GIT_URL>
-cd <YOUR_PROJECT_NAME>
-
-# Install dependencies
+```bash
+git clone https://github.com/Devops-Bot-Official/lunchHive.git
+cd lunchHive
 npm install
-# or
-bun install
-# or
-yarn install
-# or
-pnpm install
+```
 
-# Start development server
+### Start the development server
+
+```bash
 npm run dev
 ```
 
-### Available Scripts
+If you want the server reachable on your local network:
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run build:dev` - Build in development mode
-- `npm run lint` - Run ESLint
-- `npm run preview` - Preview production build
-
-## Project Structure
-
-```
-src/
-├── components/       # Reusable components
-│   ├── ui/          # shadcn/ui components
-│   └── NavLink.tsx  # Example component
-├── pages/           # Page components
-│   ├── Index.tsx    # Home page
-│   └── NotFound.tsx # 404 page
-├── hooks/           # Custom React hooks
-├── lib/             # Utility functions
-├── App.tsx          # Main app component
-├── main.tsx         # Entry point
-└── index.css        # Global styles
+```bash
+npm run dev -- --host 0.0.0.0
 ```
 
-## Customization
+### Build for production
 
-### Colors & Theming
-
-Edit `src/index.css` to customize the color scheme. All colors use HSL values for easy theming.
-
-### Adding Routes
-
-Add new routes in `src/App.tsx`:
-
-```tsx
-<Route path="/your-route" element={<YourPage />} />
-```
-
-### Adding Components
-
-Use shadcn/ui CLI to add more components:
-
-```sh
-npx shadcn@latest add [component-name]
-```
-
-## Deployment
-
-Build the project:
-
-```sh
+```bash
 npm run build
 ```
 
-The built files will be in the `dist/` directory, ready to deploy to any static hosting service:
+### Preview the production build
 
-- Vercel
-- Netlify
-- GitHub Pages
-- Azure Static Web Apps
-- AWS S3 + CloudFront
-- etc.
+```bash
+npm run preview
+```
+
+## Available scripts
+
+- `npm run dev` — start the Vite development server
+- `npm run build` — create a production build
+- `npm run build:dev` — build in development mode
+- `npm run lint` — run ESLint
+- `npm run preview` — preview the built app
+
+## Project structure
+
+```text
+src/
+├── components/      # shared UI and layout components
+├── contexts/        # app state providers (user, hive, cart, rider)
+├── hooks/           # reusable hooks
+├── lib/             # mock API and shared utilities
+├── pages/           # route-level screens
+├── App.tsx          # route wiring and providers
+├── main.tsx         # application entry point
+└── index.css        # global styles and theme tokens
+```
+
+## Current architecture notes
+
+- App routing is defined in `src/App.tsx`
+- Mock business logic lives in `src/lib/api.ts`
+- Cart state is managed by `src/contexts/CartContext.tsx`
+- Hive selection and stats are managed by `src/contexts/HiveContext.tsx`
+- User demo state is managed by `src/contexts/UserContext.tsx`
+
+## Known follow-up areas
+
+- clean up remaining hardcoded/demo-only page flows where needed
+- decide whether random mock API failures should remain enabled
+- reduce bundle size with route/component splitting
+- replace demo data with a real backend when product requirements are ready
 
 ## License
 
 MIT
-
----
-
-**Template maintained by Dee-Empire**
