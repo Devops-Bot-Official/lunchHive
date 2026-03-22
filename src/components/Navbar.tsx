@@ -1,5 +1,5 @@
 import { NavLink, Link, useNavigate } from 'react-router-dom';
-import { Hexagon, ShoppingCart, UserRound, Building2, MapPin, UtensilsCrossed, Bike } from 'lucide-react';
+import { Hexagon, ShoppingCart, UserRound, Building2, MapPin, UtensilsCrossed, Bike, Bell } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Badge } from '@/components/ui/badge';
@@ -58,6 +58,9 @@ export function Navbar() {
             <span className="text-sm">Deliver with LunchHive</span>
           </Button>
           <ThemeToggle />
+          <Button variant="ghost" onClick={() => navigate('/notifications')} aria-label="Notifications">
+            <Bell className="h-5 w-5" />
+          </Button>
           <Button variant="ghost" className="relative" onClick={() => navigate('/checkout')} aria-label="Cart">
             <ShoppingCart className="h-5 w-5" />
             {count > 0 && <Badge className="absolute -right-2 -top-2 bg-green-500 text-white hover:bg-green-500" aria-label={`${count} items in cart`}>{count}</Badge>}

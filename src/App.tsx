@@ -5,6 +5,8 @@ import Hives from '@/pages/Hives';
 import MenuPage from '@/pages/Menu';
 import CheckoutPage from '@/pages/Checkout';
 import OrdersPage from '@/pages/Orders';
+import OrderDetailPage from '@/pages/OrderDetail';
+import NotificationsPage from '@/pages/Notifications';
 import SubscriptionsPage from '@/pages/Subscriptions';
 import MyHivePage from '@/pages/MyHive';
 import ProfilePage from '@/pages/Profile';
@@ -43,10 +45,12 @@ function App() {
                     <Route path="/pricing" element={<PricingPage />} />
                     <Route path="/faq" element={<FAQPage />} />
                     <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/notifications" element={<NotificationsPage />} />
                     <Route path="/hives" element={<Hives />} />
                     <Route path="/menu" element={<MenuPage />} />
                     <Route path="/checkout" element={<CheckoutPage />} />
                     <Route path="/orders" element={<OrdersPage />} />
+                    <Route path="/orders/:orderId" element={<OrderDetailPage />} />
                     <Route path="/subscriptions" element={<SubscriptionsPage />} />
                     <Route path="/my-hive" element={<MyHivePage />} />
                     <Route path="/profile" element={<ProfilePage />} />
