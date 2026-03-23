@@ -17,6 +17,9 @@ import AboutPage from '@/pages/About';
 import PricingPage from '@/pages/Pricing';
 import FAQPage from '@/pages/FAQ';
 import ContactPage from '@/pages/Contact';
+import PrivacyPage from '@/pages/Privacy';
+import TermsPage from '@/pages/Terms';
+import HelpCenterPage from '@/pages/HelpCenter';
 import NotFound from '@/pages/NotFound';
 import { Layout } from '@/components/Layout';
 import { UserProvider } from '@/contexts/UserContext';
@@ -45,6 +48,9 @@ function App() {
                     <Route path="/pricing" element={<PricingPage />} />
                     <Route path="/faq" element={<FAQPage />} />
                     <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/help" element={<HelpCenterPage />} />
+                    <Route path="/privacy" element={<PrivacyPage />} />
+                    <Route path="/terms" element={<TermsPage />} />
                     <Route path="/notifications" element={<NotificationsPage />} />
                     <Route path="/hives" element={<Hives />} />
                     <Route path="/menu" element={<MenuPage />} />

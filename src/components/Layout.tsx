@@ -34,7 +34,7 @@ export function Layout({ children }: { children: ReactNode }) {
                 <li><Link to="/about" className="flex items-center gap-2 text-muted-foreground hover:text-foreground"><ArrowRight className="h-3 w-3" /> About</Link></li>
                 <li><Link to="/pricing" className="flex items-center gap-2 text-muted-foreground hover:text-foreground"><ArrowRight className="h-3 w-3" /> Pricing</Link></li>
                 <li><Link to="/faq" className="flex items-center gap-2 text-muted-foreground hover:text-foreground"><ArrowRight className="h-3 w-3" /> FAQ</Link></li>
-                <li><Link to="/reviews" className="flex items-center gap-2 text-muted-foreground hover:text-foreground"><ArrowRight className="h-3 w-3" /> Reviews</Link></li>
+                <li><Link to="/help" className="flex items-center gap-2 text-muted-foreground hover:text-foreground"><ArrowRight className="h-3 w-3" /> Help Center</Link></li>
               </ul>
             </div>
 
@@ -61,7 +61,7 @@ export function Layout({ children }: { children: ReactNode }) {
             </div>
 
             <div>
-              <h3 className="mb-3 text-sm font-semibold">Contact</h3>
+              <h3 className="mb-3 text-sm font-semibold">Trust & Support</h3>
               <ul className="space-y-2 text-sm">
                 <li>
                   <a href="mailto:support@lunchhive.app" className="flex items-center gap-2 text-muted-foreground hover:text-foreground">
@@ -73,11 +73,9 @@ export function Layout({ children }: { children: ReactNode }) {
                     <Phone className="h-4 w-4" /> +1 (000) 000-0000
                   </a>
                 </li>
-                <li>
-                  <Link to="/contact" className="flex items-center gap-2 text-muted-foreground hover:text-foreground">
-                    <ArrowRight className="h-3 w-3" /> Support form
-                  </Link>
-                </li>
+                <li><Link to="/privacy" className="flex items-center gap-2 text-muted-foreground hover:text-foreground"><ArrowRight className="h-3 w-3" /> Privacy Policy</Link></li>
+                <li><Link to="/terms" className="flex items-center gap-2 text-muted-foreground hover:text-foreground"><ArrowRight className="h-3 w-3" /> Terms of Service</Link></li>
+                <li><Link to="/help" className="flex items-center gap-2 text-muted-foreground hover:text-foreground"><ArrowRight className="h-3 w-3" /> Support docs</Link></li>
               </ul>
             </div>
           </div>
